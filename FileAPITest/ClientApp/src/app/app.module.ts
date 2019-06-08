@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FetchPdfComponent } from './fetch-pdf/fetch-pdf.component';
+import { DownloadFileComponent } from './download-file/download-file.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FetchPdfComponent } from './fetch-pdf/fetch-pdf.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    FetchPdfComponent
+    FetchPdfComponent,
+    DownloadFileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
