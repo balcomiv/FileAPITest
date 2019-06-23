@@ -1,4 +1,7 @@
-<iframe [src]="safePdfUrl"></iframe>
+<iframe *ngIf="docFound" [src]="safePdfUrl"></iframe>
+ 
+<!-- Testing Only -->
+<div *ngIf="!docFound">Doc Not Found</div>
 
 <!--
 

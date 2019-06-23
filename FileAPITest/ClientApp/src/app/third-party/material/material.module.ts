@@ -8,6 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
@@ -20,6 +21,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatDividerModule,
     MatInputModule,
     MatToolbarModule,
+    MatAutocompleteModule,
   ],
   exports: [
     MatButtonModule,
@@ -28,7 +30,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatListModule,
     MatDividerModule,
     MatInputModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatAutocompleteModule,
   ]
 })
 export class MaterialModule { }

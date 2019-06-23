@@ -1,0 +1,138 @@
+<!-- Source URL -->
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Source URL</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div>
+      <textarea [(ngModel)]="sourceUrl" name="sourceUrl"></textarea>
+    </div>
+
+    <mat-form-field class="example-half-width">
+      <input matInput placeholder="File to Retrieve" #fileNameInput name="fileName"
+        [ngModel]="fileName" (ngModelChange)="onFileNameChange(fileNameInput.value)">
+    </mat-form-field>
+
+    
+    <div *ngIf="false">
+        Current URL: 
+        <pre>
+          {{sourceUrl}}
+        </pre>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<ng-container *ngIf="false">
+<!-- Content-Disposition -->
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Content-Disposition</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <mat-form-field class="example-half-width">
+      <input matInput placeholder="File Name" value="sample-3pp.pdf">
+    </mat-form-field>
+
+    <mat-form-field class="example-half-width">
+      <input matInput placeholder="Inline" value="true">
+    </mat-form-field>
+
+    <mat-form-field class="example-half-width" *ngIf="false">
+      <textarea matInput placeholder="Leave a comment"></textarea>
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>
+
+<!-- Content Type -->
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Content-Type</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+
+    <mat-form-field class="example-half-width">
+      <input type="text" aria-label="Number" matInput [ngModel]="contentType" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of contentTypeOptions" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>
+</ng-container>
+
+<!-- Response Header Card -->
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>API Response Headers</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+
+    <fieldset>
+      <legend>Content-Disposition</legend>
+
+      <mat-form-field class="example-half-width">
+        <input matInput placeholder="Return File Name" #returnFileNameInput name="returnFileName" 
+          [ngModel]=returnFileName  (ngModelChange)="onReturnFileNameChange(returnFileNameInput.value)">
+      </mat-form-field>
+
+      <mat-form-field class="example-half-width">
+          <input matInput placeholder="Inline" #inlineInput name="inline" 
+            [ngModel]="inline" (ngModelChange)="onInlineChange(inlineInput.value)">
+        </mat-form-field>
+
+    </fieldset>
+
+    <fieldset id="content-type">
+        <legend>Content-Type</legend>
+  
+        <mat-form-field class="example-half-width">
+          <input matInput placeholder="Content-Type" #contentTypeInput name="contentType" 
+            [ngModel]="contentType" (ngModelChange)="onContentTypeChange(contentTypeInput.value)">
+        </mat-form-field>
+  
+      </fieldset>
+  
+  </mat-card-content>
+</mat-card>
+
+
+<div>
+  <a [href]="sourceUrl">Download Link - Source URL</a>
+</div>
+
+<div layout="row" layout-wrap>
+
+  <div>
+    safeUrl
+    <div>
+      <iframe [src]="safeUrl" frameborder="0"></iframe>  
+    </div>
+  </div>
+
+  <div>
+    Safe Source Url
+    <div>
+      <iframe [src]="safePdfUrl" frameborder="0"></iframe>  
+    </div>
+  </div>
+
+  <div>
+    Safe Blob Url
+    <div>
+      <iframe *ngIf="safeBlobUrl" [src]="safeBlobUrl" frameborder="0"></iframe>  
+    </div>
+  </div>
+</div>
+
+
+<h4>Sample URLs:</h4>
+<div>https://localhost:44305/api/Files?fileName=sample-3pp.pdf&contentType=application/pdf&inline=true</div>
+<div>https://localhost:44305/api/Files?fileName=birthday.html&contentType=text/html&inline=false</div>
+<br>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { TdMediaService } from '@covalent/core/media';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -9,73 +10,30 @@ import { TdMediaService } from '@covalent/core/media';
 export class AppComponent {
   // title = 'UltimateAngularExamples';
 
-  routes: Object[] = [{
-      icon: 'home',
-      route: '.',
-      title: 'Home',
-    }, {
-      icon: 'library_books',
-      route: '.',
-      title: 'Documentation',
-    }, {
-      icon: 'color_lens',
-      route: '.',
-      title: 'Style Guide',
-    }, {
-      icon: 'view_quilt',
-      route: '.',
-      title: 'Layouts',
-    }, {
-      icon: 'picture_in_picture',
-      route: '.',
-      title: 'Components & Addons',
-    },
-  ];
+  constructor(
+    private _iconRegistry: MatIconRegistry,
+    private _domSanitizer: DomSanitizer) 
+  {
+    this._iconRegistry.addSvgIconInNamespace('assets', 'teradata',
+    this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/teradata.svg'));
 
-  usermenu: Object[] = [{
-      icon: 'swap_horiz',
-      route: '.',
-      title: 'Switch account',
-    }, {
-      icon: 'tune',
-      route: '.',
-      title: 'Account settings',
-    }, {
-      icon: 'exit_to_app',
-      route: '.',
-      title: 'Sign out',
-    },
-  ];
+    this._iconRegistry.addSvgIconInNamespace('assets', 'github',
+    this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/github.svg'));
 
-  navmenu: Object[] = [{
-      icon: 'looks_one',
-      route: '.',
-      title: 'First item',
-      description: 'Item description',
-    }, {
-      icon: 'looks_two',
-      route: '.',
-      title: 'Second item',
-      description: 'Item description',
-    }, {
-      icon: 'looks_3',
-      route: '.',
-      title: 'Third item',
-      description: 'Item description',
-    }, {
-      icon: 'looks_4',
-      route: '.',
-      title: 'Fourth item',
-      description: 'Item description',
-    }, {
-      icon: 'looks_5',
-      route: '.',
-      title: 'Fifth item',
-      description: 'Item description',
-    },
-  ];
+    this._iconRegistry.addSvgIconInNamespace('assets', 'teradata-dark',
+    this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/teradata-dark.svg'));
 
-  constructor(public media: TdMediaService) {
-    
+    // this._iconRegistry.addSvgIconInNamespace('assets', 'covalent',
+    // this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/covalent.svg'));
+    // this._iconRegistry.addSvgIconInNamespace('assets', 'covalent-mark',
+    // this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/covalent-mark.svg'));
+    // this._iconRegistry.addSvgIconInNamespace('assets', 'teradata-ux',
+    // this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/teradata-ux.svg'));
+    // this._iconRegistry.addSvgIconInNamespace('assets', 'appcenter',
+    // this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/appcenter.svg'));
+    // this._iconRegistry.addSvgIconInNamespace('assets', 'listener',
+    // this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/listener.svg'));
+    // this._iconRegistry.addSvgIconInNamespace('assets', 'querygrid',
+    // this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/querygrid.svg'));
   }
 }

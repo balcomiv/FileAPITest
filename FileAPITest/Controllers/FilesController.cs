@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.IO;
 using System.Net.Mime;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileProviders;
 
@@ -13,12 +9,16 @@ namespace FileAPITest.Controllers
     [ApiController]
     public class FilesController : ControllerBase
     {
+        private const string SAMPLE_FILE = "sample-3pp.pdf";
         private readonly IFileProvider _fileProvider;
         public FilesController(IFileProvider fileProvider) => _fileProvider = fileProvider;
 
         // GET: api/Files
         [HttpGet]
-        public IActionResult Get(string fileName, string contentType = "text/json", bool inline = false)
+        // [HttpGet("")]
+        // GET: api/files/
+        // [HttpGet("{fileName?, contentType?, inline?}", Name = "Get")]
+        public IActionResult Get(string fileName = "sample-3pp.pdf", string contentType = "application/pdf", bool inline = true)
         {
             //  https://csharp.hotexamples.com/examples/-/IFileProvider/GetFileInfo/php-ifileprovider-getfileinfo-method-examples.html
 
@@ -29,43 +29,53 @@ namespace FileAPITest.Controllers
                 return NotFound();
             }
 
+            var fileExtension = Path.GetExtension(fileInfo.Name);
+
             var data = System.IO.File.ReadAllBytes(fileInfo.PhysicalPath);
+
+            //if (fileName == SAMPLE_FILE)
+            //{
+            //    contentType = "application/pdf";
+            //    inline = true;
+            //}
 
             // Response...
             System.Net.Mime.ContentDisposition cd = new System.Net.Mime.ContentDisposition
             {
-                FileName = "Test PDF Name",
-                Inline = true  // false = prompt the user for downloading;  true = browser to try to show the file inline
+                FileName = $"New_Dnld_Name{fileExtension}",
+                Inline = inline  // false = prompt the user for downloading;  true = browser to try to show the file inline
             };
             Response.Headers.Add("Content-Disposition", cd.ToString());
+            Response.Headers.Add("Content-Type", contentType);
             // Response.Headers.Add("X-Content-Type-Options", "nosniff");
-            Response.Headers.Add("Content-Type", "application/pdf");
 
             // return new string[] { fileName, contentType, inline.ToString() };
             return File(data, contentType);
         }
 
-        [HttpGet("{imageName}")]
-        public IActionResult GetImageFile(string imageName)
+        [HttpGet("{sample-pdf}")]
+        public IActionResult Get()
         {
+            var fileInfo = _fileProvider.GetFileInfo(SAMPLE_FILE);
+
+            if (!fileInfo.Exists)
+            {
+                return NotFound();
+            }
+
             // Response...
             System.Net.Mime.ContentDisposition cd = new System.Net.Mime.ContentDisposition
             {
-                FileName = "Test PDF Name",
+                FileName = "TestDownload.pdf",
                 Inline = true  // false = prompt the user for downloading;  true = browser to try to show the file inline
             };
             Response.Headers.Add("Content-Disposition", cd.ToString());
-            // Response.Headers.Add("X-Content-Type-Options", "nosniff");
-            Response.Headers.Add("Content-Type", "application/pdf");
-
-            var name = $"{imageName}.pdf";
-
-            var fileInfo = _fileProvider.GetFileInfo(name);
 
             var data = System.IO.File.ReadAllBytes(fileInfo.PhysicalPath);
 
             // return File(data, MediaTypeNames.Image.Jpeg, name);
             return File(data, "application/pdf");
+            // return File(data, MediaTypeNames.Application.Pdf, "TestDownload.pdf"); 
         }
     }
 }

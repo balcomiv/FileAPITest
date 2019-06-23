@@ -1,0 +1,28 @@
+textarea {
+    width: 100%;
+    border: none;
+}
+
+input,
+select {
+    width: 150px;
+}
+
+div {
+    margin: 15px;
+}
+
+.example-half-width {
+    // width: 50%;
+    width: 300px;
+    display: block;
+}
+
+iframe {
+    width: 500px;
+    height: 500px;
+}
+
+fieldset {
+    margin: 15px 0 15px 0;
+}

@@ -27,4 +27,14 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## Not noted, but must install
-ng add @angular/material (note, I removed the )
+ng add @angular/material (note, I removed the styles that were added to angular.json via scaffold. The Covalent app uses them slightly differently)
+
+## Flex Layout - Material Implementation
+https://material.angularjs.org/latest/layout/introduction
+https://teradata.github.io/covalent/#/layouts 
+
+## fxLayout - Angular Implementation
+https://github.com/angular/flex-layout/wiki/fxLayout-API
+https://stackblitz.com/edit/angular-material-flex-layout-seed?file=app%2Fapp.module.ts
+
+https://blog.angularindepth.com/angular-flex-layout-flexbox-and-grid-layout-for-angular-component-6e7c24457b63

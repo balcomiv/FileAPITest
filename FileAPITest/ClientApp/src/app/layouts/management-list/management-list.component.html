@@ -1,0 +1,167 @@
+<td-layout>
+
+  <!-- Main Nav Items -->
+  <td-navigation-drawer flex sidenavTitle="Covalent" logo="assets:teradata-dark" name="Firstname Lastname" email="firstname.lastname@company.com">
+    <mat-nav-list>
+      <a *ngFor="let item of routes" 
+        mat-list-item 
+        tdLayoutClose
+        [routerLink]="item.route"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{exact:true}">
+        <mat-icon>{{item.icon}}</mat-icon>{{item.title}}
+      </a>
+    </mat-nav-list>
+    <div td-navigation-drawer-menu>
+      <mat-nav-list>
+        <a *ngFor="let item of usermenu" 
+          mat-list-item 
+          [routerLink]="item.route">
+          <mat-icon>{{item.icon}}</mat-icon>{{item.title}}
+        </a>
+      </mat-nav-list>
+    </div>
+  </td-navigation-drawer>
+
+  <!-- Nav Layout -->
+  <td-layout-nav>
+
+    <!-- Main Toolbar -->
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <button mat-icon-button td-menu-button tdLayoutToggle>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-icon [routerLink]="['/']" class="mat-icon-logo cursor-pointer" svgIcon="assets:teradata"></mat-icon>
+      <span [routerLink]="['/']" class="cursor-pointer">Covalent</span>
+      <span flex></span>
+      <a mat-icon-button matTooltip="Docs" ><mat-icon>chrome_reader_mode</mat-icon></a>
+      <a mat-icon-button matTooltip="Github" ><mat-icon svgIcon="assets:github"></mat-icon></a>
+    </div>
+
+    <!-- Sidebar List (Manage List) -->
+    <!-- <td-layout-manage-list #manageList
+            [opened]="media.registerQuery('gt-sm') | async"
+            [mode]="(media.registerQuery('gt-sm') | async) ? 'side' :  'over'"
+            [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '257px' : '100%'"> -->
+      <td-layout-manage-list #manageList [opened]="false">
+      
+      <!-- Sidebar List Title -->
+      <!-- <mat-toolbar td-sidenav-content>
+        <span>View By File Type</span>
+      </mat-toolbar> -->
+
+      <!-- Sidebar List Items -->
+      <mat-nav-list td-sidenav-content [tdLayoutManageListClose]="!media.query('gt-sm')">
+        <ng-template let-item let-last="last" ngFor [ngForOf]="navmenu">
+          <a 
+            mat-list-item
+            [routerLink]="item.route"
+            [queryParams]="item.queryParams"
+            [state]="item.state"
+            [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{exact:true}">
+            <mat-icon matListIcon>{{item.icon}}</mat-icon> {{item.title}}
+          </a>
+        </ng-template>
+      </mat-nav-list>
+      <!-- <div td-sidenav-content>
+        <div>
+          Test 1
+        </div>
+        <div>
+          Test 2
+        </div>      
+      </div> -->
+
+      <!-- Content Toolbar -->
+      <!-- <mat-toolbar>
+        <div layout="row" layout-align="start center" flex>
+          <button mat-icon-button tdLayoutManageListOpen [hideWhenOpened]="true">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+          <span>Content Title</span>
+          <span flex></span>
+          <button mat-icon-button><mat-icon>settings</mat-icon></button>
+        </div>
+      </mat-toolbar> -->
+
+      <!-- Content -->
+      <!-- <div layout-gt-sm="row" tdMediaToggle="gt-xs" [mediaClasses]="['push-sm']">
+        <div flex-gt-sm="60">
+          <mat-card>
+            <mat-card-title>Products Sales</mat-card-title>
+            <mat-card-subtitle>usage stats for our products</mat-card-subtitle>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+              card content
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-actions>
+              <a mat-button color="accent" class="text-upper" [routerLink]="['/']">
+                <span>View More</span>
+              </a>
+            </mat-card-actions>
+          </mat-card>
+          <mat-card>
+            <mat-card-title>Customer Activity</mat-card-title>
+            <mat-card-subtitle>Recent activity from select members</mat-card-subtitle>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+              card content
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-actions>
+              <a mat-button color="accent" class="text-upper" [routerLink]="['/']">
+                <span>View More</span>
+              </a>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+        <div flex-gt-sm="40">
+          <mat-card>
+            <mat-card-title>Alerts</mat-card-title>
+            <mat-card-subtitle>Items requiring attention</mat-card-subtitle>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+              card content
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-actions>
+              <a mat-button color="accent" class="text-upper" [routerLink]="['/']">
+                <span>View More</span>
+              </a>
+            </mat-card-actions>
+          </mat-card>
+          <mat-card>
+            <mat-card-title>Favorites</mat-card-title>
+            <mat-card-subtitle>Your favorite products</mat-card-subtitle>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+              card content
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-actions>
+              <a mat-button color="accent" class="text-upper" [routerLink]="['/']">
+                <span>View More</span>
+              </a>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div> -->
+
+      <router-outlet></router-outlet>
+
+      <!-- Inner Footer (optinal) -->
+      <!-- <td-layout-footer-inner>
+        Optional inner footer
+      </td-layout-footer-inner> -->
+    </td-layout-manage-list>
+
+    <!-- Main Footer -->
+    <td-layout-footer>
+      <div layout="row" layout-align="start center">
+        <span class="mat-caption">Copyright &copy; 2017 Company Name. All rights reserved</span>
+      </div>
+    </td-layout-footer>
+  </td-layout-nav>
+</td-layout>

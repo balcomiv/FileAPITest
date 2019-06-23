@@ -1,0 +1,15 @@
+
+<a *ngIf="showLink; else iFrame"
+  [href]="">
+  Download
+</a>
+
+<ng-template #iFrame>
+  <iframe [src]=""></iframe>
+</ng-template>
+
+<ng-container *ngIf="false">
+  <pre>
+    {{ state$ | async | json }}
+  </pre>
+</ng-container>

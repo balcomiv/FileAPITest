@@ -1,0 +1,115 @@
+<p>
+  kitchen-sink works!
+</p>
+
+<div>
+  <label for="urlSource">URL Source:</label>
+</div>
+
+<div>
+  <!-- <input [(ngModel)]="url" name="urlSource"> -->
+  <textarea [(ngModel)]="url" name="urlSource"></textarea>
+</div>
+
+<div>
+  <a [href]="url">Download</a>
+</div>
+
+<!-- <div [innerHtml]="anchorHtml"></div>-->
+
+<div>
+    Current URL: 
+    <pre>
+      {{url}}
+    </pre>
+</div>
+
+Sample URLs:
+<div>https://localhost:44305/api/Files?fileName=sample-3pp.pdf&contentType=application/pdf&inline=true</div>
+<div>https://localhost:44305/api/Files?fileName=birthday.html&contentType=text/html&inline=false</div>
+<div></div>
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+    <mat-card-title>Source</mat-card-title>
+    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+  </mat-card-header>
+  <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <!-- <p>
+      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+      bred for hunting.
+    </p> -->
+    <div>
+      <label for="urlSource">URL Source:</label>
+    </div>
+      
+    <div>
+      <textarea [(ngModel)]="url" name="urlSource"></textarea>
+    </div>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+
+<fieldset>
+  <legend>Personalia:</legend>
+  Name: <input ><br>
+  Email: <input ><br>
+  Date of birth: <input >
+
+  <h4>native html select</h4>
+  <mat-form-field>
+    <mat-label>Select your car (required)</mat-label>
+    <select matNativeControl>
+      <option label="--select something --"></option>
+      <option value="saab">Saab</option>
+      <option value="mercedes">Mercedes</option>
+      <option value="audi">Audi</option>
+    </select>
+    <mat-hint>You can pick up your favorite car here</mat-hint>
+  </mat-form-field>
+
+</fieldset>
+
+
+<fieldset *ngIf="false">
+  <legend>Personalia:</legend>
+  Name: <input ><br>
+  Email: <input ><br>
+  Date of birth: <input >
+
+  <h4>native html select</h4>
+  <mat-form-field>
+    <mat-label>Select your car (required)</mat-label>
+    <select matNativeControl>
+      <option label="--select something --"></option>
+      <option value="saab">Saab</option>
+      <option value="mercedes">Mercedes</option>
+      <option value="audi">Audi</option>
+    </select>
+    <mat-hint>You can pick up your favorite car here</mat-hint>
+  </mat-form-field>
+
+</fieldset>
+
+<fieldset *ngIf="false">
+  <legend>Content-Disposition</legend>
+  <label for="select">Inline: </label>
+  <select name="select" [(ngModel)]="myDropDown" (ngModelChange)="onChangeofOptions($event)">
+    <option value="true">True</option>
+    <option value="false">False</option>
+    <!-- <option value="three">Three</option> -->
+  </select>
+
+  <label for="fileName">File Name: </label>
+  <input name="fileName"/>
+
+  <div>drop down value: {{myDropDown}}</div>
+</fieldset>
